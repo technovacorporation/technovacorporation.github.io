@@ -1,236 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Technova - The Future is Now!</title>
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: "Comic Sans MS", cursive, sans-serif;
-        background: radial-gradient(circle at top, #7fbfff, #002244 80%);
-        color: #001f3f;
-        text-align: center;
-    }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Technova — Retro 2003 Indie Portal</title>
+  <style>
+    /* Reset & base */
+    * { box-sizing: border-box; }
+    html,body { height:100%; margin:0; font-family: 'Verdana', Tahoma, Arial, sans-serif; background:#dbeeff url('') repeat; color:#04243a; }
 
-    header {
-        background: linear-gradient(to bottom right, rgba(0,150,255,0.9), rgba(255,0,150,0.8));
-        border-bottom: 3px solid rgba(255,255,255,0.4);
-        padding: 30px 0 20px 0;
-        box-shadow: 0 0 25px rgba(0,0,0,0.6);
-        backdrop-filter: blur(5px);
-    }
+    /* page wrapper */
+    .wrap { max-width:1100px; margin:18px auto; padding:14px; }
 
-    header img.logo {
-        width: 350px;
-        max-width: 80%;
-        height: auto;
-        display: block;
-        margin: 0 auto 10px auto;
-        filter: drop-shadow(0 0 15px rgba(255,255,255,0.6))
-                drop-shadow(0 0 5px rgba(0,100,255,0.8));
-    }
+    /* header: logo + tagline */
+    header { display:flex; gap:18px; align-items:center; background:linear-gradient(#eaf6ff,#cfe9ff); border:2px solid #9cc3ff; padding:12px; border-radius:8px; box-shadow: 0 6px 18px rgba(1,30,70,0.12); }
+    header img.logo { width:320px; max-width:40%; height:auto; display:block; filter: drop-shadow(0 6px 8px rgba(0,0,0,0.25)); }
+    .tag { font-size:1.1rem; color:#06314a; text-shadow:0 1px 0 #fff; }
+    .tag small { display:block; font-size:0.9rem; color:#155074; }
 
-    marquee {
-        font-weight: bold;
-        color: #ffffcc;
-        text-shadow: 1px 1px 2px #000;
-    }
+    /* nav */
+    nav { margin-top:12px; background:linear-gradient(#f6fbff,#dbeeff); border:2px solid #8bb0e8; padding:8px; border-radius:6px; box-shadow: inset 0 1px 0 #fff; }
+    nav .menu { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+    nav a { display:inline-block; padding:8px 14px; text-decoration:none; color:#063763; font-weight:bold; border-radius:6px; border:1px solid rgba(255,255,255,0.7); background:linear-gradient(#ffffff,#d4eaff); box-shadow: 0 2px 0 rgba(0,0,0,0.08); }
+    nav a:hover { transform:translateY(-2px); box-shadow: 0 8px 18px rgba(0,80,160,0.18); background:linear-gradient(#e6f4ff,#bfe1ff); color:#001a2a; }
 
-    nav {
-        background: linear-gradient(to bottom, rgba(255,255,255,0.6), rgba(200,220,255,0.4));
-        border-bottom: 2px solid rgba(255,255,255,0.3);
-        padding: 12px;
-        box-shadow: inset 0 1px 0 #ffffff, 0 3px 10px rgba(0,0,0,0.3);
-        backdrop-filter: blur(8px);
-    }
+    /* layout columns */
+    .columns { display:grid; grid-template-columns: 1fr 320px; gap:18px; margin-top:18px; align-items:start; }
 
-    nav a {
-        color: #003366;
-        font-weight: bold;
-        text-decoration: none;
-        margin: 0 20px;
-        padding: 8px 16px;
-        border-radius: 20px;
-        background: linear-gradient(to bottom right, rgba(255,255,255,0.8), rgba(200,220,255,0.5));
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 3px 6px rgba(0,0,0,0.2);
-        transition: all 0.2s ease;
-    }
+    /* main card */
+    .card { background:linear-gradient(#ffffff,#e9f6ff); border:2px solid #c6e0ff; padding:18px; border-radius:8px; box-shadow: 0 10px 24px rgba(1,30,70,0.08); }
+    h2 { margin-top:0; color:#013a51; letter-spacing:0.08em; font-size:1.05rem; }
+    p.lead { color:#06435a; }
 
-    nav a:hover {
-        background: linear-gradient(to bottom right, rgba(0,150,255,0.8), rgba(0,50,200,0.8));
-        color: #fff;
-        box-shadow: 0 0 12px rgba(0,200,255,0.8);
-    }
+    /* big retro buttons */
+    .buttons { display:flex; gap:10px; flex-wrap:wrap; margin:12px 0; }
+    .btn { display:inline-flex; align-items:center; gap:10px; padding:10px 14px; background:linear-gradient(#eaf6ff,#9dcfff); border:2px solid #7fb0ea; border-radius:6px; font-weight:bold; color:#00324a; text-decoration:none; box-shadow: 0 6px 0 rgba(0,0,0,0.08); }
+    .btn img.icon { width:20px; height:20px; image-rendering: pixelated; }
 
-    main {
-        padding: 40px 0;
-    }
+    /* downloads */
+    .downloads { margin-top:8px; }
+    .dl-item { display:flex; justify-content:space-between; gap:12px; padding:8px; border-bottom:1px dashed rgba(0,0,0,0.06); }
+    .dl-meta { color:#09455f; font-size:0.95rem; }
+    .badge { padding:4px 8px; border-radius:8px; background:#def3ff; border:1px solid #a6def6; font-weight:bold; }
 
-    section {
-        background: linear-gradient(to bottom right, rgba(255,255,255,0.9), rgba(220,240,255,0.7));
-        border: 1px solid rgba(255,255,255,0.5);
-        border-radius: 18px;
-        margin: 25px auto;
-        padding: 25px;
-        width: 80%;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.25), inset 0 1px 1px rgba(255,255,255,0.7);
-        backdrop-filter: blur(10px);
-    }
+    /* sidebar nostalgia */
+    aside { position:relative; }
+    .box { background:linear-gradient(#f8fdff,#e9f6ff); border:2px solid #cbe8ff; padding:10px; border-radius:8px; margin-bottom:12px; box-shadow: 0 6px 18px rgba(0,60,100,0.06); }
+    .ticker { overflow:hidden; white-space:nowrap; }
+    .ticker p { display:inline-block; padding-left:100%; animation: scroll 18s linear infinite; font-weight:bold; }
+    @keyframes scroll { 0% { transform: translateX(0%);} 100% { transform: translateX(-100%);} }
 
-    section h2 {
-        color: #004080;
-        text-transform: uppercase;
-        border-bottom: 2px solid rgba(0,100,255,0.3);
-        padding-bottom: 6px;
-        margin-bottom: 12px;
-        text-shadow: 1px 1px 2px rgba(255,255,255,0.6);
-    }
+    /* gif area */
+    .gif-row { display:flex; gap:8px; justify-content:center; }
+    .gif { width:90px; height:90px; border:3px solid #fff; border-radius:6px; box-shadow: 0 6px 12px rgba(0,0,0,0.12); object-fit:cover; }
 
-    ul {
-        list-style-type: square;
-        text-align: left;
-        display: inline-block;
-        margin: 10px 0;
-        padding-left: 25px;
-        color: #002244;
-    }
+    /* footer */
+    footer { margin-top:18px; text-align:center; padding:12px; color:#024; font-size:0.9rem; }
 
-    img.gif {
-        width: 120px;
-        height: 120px;
-        border-radius: 12px;
-        margin-top: 10px;
-        box-shadow: 0 0 20px rgba(0,150,255,0.6);
-        border: 2px solid rgba(255,255,255,0.5);
-    }
+    /* retro footer note */
+    .note { font-size:0.85rem; color:#0a3b4f; }
 
-    footer {
-        background: linear-gradient(to bottom right, rgba(255,255,255,0.5), rgba(0,100,255,0.6));
-        color: #002244;
-        font-size: 0.9rem;
-        border-top: 2px solid rgba(255,255,255,0.6);
-        padding: 15px;
-        box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 -2px 8px rgba(0,0,0,0.2);
-        backdrop-filter: blur(6px);
-    }
+    /* responsive */
+    @media (max-width:880px){ .columns{ grid-template-columns: 1fr; } header img.logo{ width:220px; } aside{ order:2; } }
 
-    .blink {
-        animation: blinker 1s linear infinite;
-        color: #ff66cc;
-    }
+    /* tiny pixel cursor (2003 feeling) - uses data URI for a small cursor */
+    body { cursor: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAJElEQVR4AWNggID/4T8GhgYGBgYkFQ4QJwMDAwMDACgQyCqABBgAAGi0C0sQ7OxwAAAAASUVORK5CYII='), auto; }
 
-    @keyframes blinker {
-        50% { opacity: 0; }
-    }
-
-    .counter {
-        background: rgba(255,255,255,0.6);
-        border: 1px solid rgba(0,0,0,0.3);
-        border-radius: 10px;
-        padding: 6px 12px;
-        display: inline-block;
-        margin-top: 10px;
-        font-family: monospace;
-    }
-
-    .comment {
-        background: rgba(255,255,255,0.8);
-        border: 1px solid rgba(0,0,0,0.2);
-        border-radius: 10px;
-        padding: 12px;
-        margin: 12px auto;
-        width: 70%;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        text-align: left;
-    }
-
-    .comment b {
-        color: #003366;
-    }
-</style>
+    /* retro volume toggle */
+    .music-toggle{ display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:20px; background:linear-gradient(#fff,#cfefff); border:1px solid #9ed0fb; }
+  </style>
 </head>
 <body>
+  <div class="wrap">
     <header>
-        <img src="techova.png" alt="Technova Logo" class="logo">
-        <marquee>Welcome to Technova - Pioneering Tomorrow's Technology... Today!</marquee>
+      <img src="techova.png" alt="Technova Logo" class="logo">
+      <div>
+        <div class="tag"><strong>TECHNOVA</strong>
+          <small>Indie Labs • Retro Demos • Pendulum OS Experiments</small>
+        </div>
+        <div style="margin-top:8px; display:flex; gap:8px; align-items:center;">
+          <div class="music-toggle" id="musicToggle" title="Toggle retro ambient track">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="display:block"><path d="M3 10v4h4l5 5V5L7 10H3z" fill="#026"/></svg>
+            <span id="musicLabel">Play Ambient</span>
+          </div>
+          <div style="font-size:0.85rem; color:#06506f;">Since 1995 • Y2K-aware • Flash-friendly</div>
+        </div>
+      </div>
     </header>
 
     <nav>
+      <div class="menu">
         <a href="#home">Home</a>
-        <a href="#about">Company</a>
-        <a href="#services">Solutions</a>
-        <a href="#news">News</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#downloads">Downloads</a>
+        <a href="#community">Community</a>
         <a href="#contact">Contact</a>
+      </div>
     </nav>
 
-    <main>
+    <div class="columns">
+      <main class="card">
         <section id="home">
-            <h2>Welcome to Technova</h2>
-            <p><b>Since 1995</b>, Technova has been redefining the limits of human creativity and computational power. Our mission is simple: to bring the future closer - one byte at a time.</p>
-            <p>We specialize in advanced digital technologies, multimedia design, and interactive network systems. Whether you're a startup dreaming big or a corporation expanding into cyberspace, Technova is your partner in innovation.</p>
-        <img src="techova2.png" alt="Technova worker" class="logo">
-        </section>
+          <h2>Welcome to Technova — Indie Portal</h2>
+          <p class="lead">Since 1995, Technova has been redefining the limits of human creativity and computational power. Our mission is simple: to bring the future closer - one byte at a time.
 
-        <section id="about">
-            <h2>About Technova</h2>
-            <p>Founded in Silicon Valley during the Internet revolution, Technova began as a small group of computer visionaries passionate about connecting people across the globe. By 1998, we had launched our first data server cluster and joined the new digital economy.</p>
-            <p>Our team of engineers, designers, and cyberarchitects continue to explore new frontiers - from artificial intelligence to holographic visualization.</p>
-            <p><i>Technova - where technology meets imagination.</i></p>
-        </section>
+We specialize in advanced digital technologies, multimedia design, and interactive network systems. Whether you're a startup dreaming big or a corporation expanding into cyberspace, Technova is your partner in innovation.</p>
 
-        <section id="services">
-            <h2>Our Solutions</h2>
-            <ul>
-                <li>Web Development & Multimedia Portals</li>
-                <li>Custom Software for Windows 95, 98, XP and Pendulum OS.</li>
-                <li>Network and Intranet Integration</li>
-                <li>Interactive CD-ROM and Flash Design</li>
-                <li>AI and Future Computing Research</li>
-                <li>Global Data Services and Cloud Computing (since 2001!)</li>
-            </ul>
-            <p><b>Our systems are fully Y2K compliant!</b></p>
-        </section>
-<section id="news">
-    <h2>Company News & Milestones</h2>
-    <p><b>January 2002:</b> Technova launches its first broadband multimedia platform, "NovaNet," connecting over 10,000 users worldwide.</p>
-    <p><b>March 2002:</b> Technova creates its final codename project for educational purposes, "CodenameBALDI" - designed to help disabled people or people with dementia learn. The system is innovative but still has some faults.</p>
-    <p><b>August 2003:</b> Technova completes development of its own operating system, "Pendulum OS" - a fully proprietary OS designed entirely by Technova engineers. No Windows components are used. Pendulum OS powers Technova’s applications and provides a stable, secure platform for internal and educational apps.</p>
-    <p><b>March 2004:</b> Their final creation, the Technova School, is unveiled - a comprehensive educational platform building on CodenameBALDI's experience and running on Pendulum OS.</p>
-    <p><i>Stay tuned for more updates - the future never stops evolving!</i></p>
-</section>
+          <div class="buttons" aria-hidden>
+            <a class="btn" href="#downloads"><img class="icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='22' height='14' x='1' y='6' fill='%23004f77' rx='2'/><path d='M8 2v6h8V2' fill='%23007bbf'/></svg>" alt="">Downloads</a>
+            <a class="btn" href="#projects"><img class="icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='8' r='3' fill='%23004f77'/><rect x='4' y='13' width='16' height='6' rx='1' fill='%23007bbf'/></svg>" alt="">Demos</a>
+            <a class="btn" href="#community"><img class="icon" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M2 20v-2a6 6 0 0112 0v2' fill='%23004f77'/><circle cx='8' cy='8' r='3' fill='%23007bbf'/></svg>" alt="">Forums</a>
+          </div>
 
-        <section id="comments">
-            <h2>User Comments</h2>
-            <div class="comment">
-                <b>John D. (California):</b> "I used Technova’s web hosting in '99 - lightning fast compared to dial-up speeds! Great service."
+          <hr>
+
+          <h3 id="projects">Featured Projects</h3>
+          <p><strong>Pendulum OS (Dev Preview)</strong> — small, lightweight educational OS used for our Pendulum applications. Experimental builds are marked with the version tag and release notes.</p>
+          <p><strong>Codename: BALDI</strong> — Our best A.I educator.</p>
+
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;">
+            <div style="flex:1; min-width:220px; background:linear-gradient(#fff,#eef9ff); padding:10px; border-radius:8px; border:1px solid #cfe9ff;">
+              <b>CodenameBaldi's Educational School!</b>
+              <p style="margin:6px 0;">Our old classic version of CNBES for our old fans</p>
+              <a class="btn" href="#" onclick="fakeDL('GET IT ON GITHUB HERE: https://codenamebaldee.itch.io/')">Download</a>
             </div>
-            <div class="comment">
-                <b>Alice M. (New York):</b> "Their multimedia CD-ROM designs blew our clients away. You can tell these folks understand the future."
+
+            <div style="flex:1; min-width:220px; background:linear-gradient(#fff,#eef9ff); padding:10px; border-radius:8px; border:1px solid #cfe9ff;">
+              <b>CodenameBaldi's Educational School Remastered!</b>
+              <p style="margin:6px 0;">Our new version of CBNES! With much more additions!</p>
+              <a class="btn" href="#" onclick="fakeDL('CodenameBALDI_remastered (its in the works hun, be patient')">Download</a>
             </div>
-            <div class="comment">
-                <b>Chris P. (Florida):</b> "I still use their NovaNet platform daily. Reliable, simple, and futuristic - just like it was in 2001."
+          </div>
+
+          <hr>
+
+          <section id="downloads" class="downloads">
+            <h3>Downloads & Patches</h3>
+            <div class="dl-item">
+              <div class="dl-meta">Pendulum OS - floppy disk image (10.2MB) <br><small>MD5: 9a3f... (demo)</small></div>
+              <div><span class="badge">Stable</span></div>
             </div>
-            <div class="comment">
-                <b>Admin Reply:</b> "Thanks to all our loyal users for helping Technova grow into a global innovator in technology and design."
+            <div class="dl-item">
+              <div class="dl-meta">CodenameBALDI Demo (Win32) - 7.2MB <br><small>Requires QuickTime 6 / Flash Player</small></div>
+              <div><span class="badge">Beta</span></div>
             </div>
+            <div class="dl-item">
+              <div class="dl-meta">Technova SDK (legacy) - 14.2MB <br><small>Includes sample source & shaders</small></div>
+              <div><span class="badge">Archive</span></div>
+            </div>
+          </section>
+
+          <hr>
+
+          <section id="community">
+            <h3>Community</h3>
+            <p>Join our IRC channel or drop a message in the guestbook. We keep an (fake) forum and a community patch board for hobbyists.</p>
+            <div style="display:flex; gap:8px; margin-top:8px;">
+              <a class="btn" href="#">Guestbook</a>
+              <a class="btn" href="#">IRC: #technova</a>
+              <a class="btn" href="#">Patch Board</a>
+            </div>
+          </section>
         </section>
 
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p><b>Email:</b> <a href="mailto:technovahelp@gmail.com">technovahelp@gmail.com</a></p>
-            <p><b>Phone:</b> +1-819-NOVA</p>
-            <p><b>Fax:</b> +1-555-FAX-2049</p>
-            <p><b>Address:</b> 720, Silicon Valley, CA 032003</p>
-            <div class="counter">Visitor Counter: 03028039203</div>
-        </section>
-    </main>
+        <footer>
+          <div class="note">&copy; 1995–2007 Technova Corp. This page is lovingly made by our 2 best web coders. Best viewed in <em>early 2000s browsers</em> (or modern ones pretending).</div>
+        </footer>
+      </main>
 
-    <footer>
-        <p>&copy; 1995–2005 Technova Corporation. All rights reserven't.</p>
-        <p><span class="blink">Under Construction - Please Bookmark Us!</span></p>
-        <p><small>Best viewed in Internet Explorer 5.5 or Netscape Navigator 6.0 at 1024x768 resolution.</small></p>
-    </footer>
+      <aside>
+        <div class="box">
+          <h4 style="margin:6px 0;">News Ticker</h4>
+          <div class="ticker"><p>March 2004: Pendulum OS builds now include a simple audio API • Jan 2003: NovaNet alpha reaches 10,000 users • Now hosting CodenameBALDI demos!</p></div>
+        </div>
+
+        <div class="box">
+          <h4 style="margin:6px 0;">Under Construction</h4>
+          <div style="text-align:center; margin:8px 0;">
+            <!-- example GIFs - use local or web ones; these are placeholders -->
+            <div class="gif-row">
+              <img class="gif" src="https://i.gifer.com/4V0b.gif" alt="construction gif">
+              <img class="gif" src="https://i.gifer.com/7PLw.gif" alt="retro gif">
+            </div>
+            <p style="font-size:0.85rem; margin-top:8px;">Personal demos being uploaded. Please be patient — or not.</p>
+          </div>
+        </div>
+
+        <div class="box">
+          <h4 style="margin:6px 0;">Visitor Count</h4>
+          <div style="display:flex; gap:8px; align-items:center; justify-content:space-between;">
+            <div style="font-family:monospace; font-weight:bold;">0 3 0 2 8 0 3 9 2 0 3</div>
+            <button class="btn" onclick="incrementCounter()">Click Me!</button>
+          </div>
+        </div>
+
+        <div class="box">
+          <h4 style="margin:6px 0;">Quick Links</h4>
+          <ul style="padding-left:18px; margin:6px 0; text-align:left;">
+            <li><a href="#downloads">Downloads</a></li>
+            <li><a href="#projects">Project Notes</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <section class="card" id="contact" style="margin-top:18px;">
+      <h2>Contact & Misc</h2>
+      <p>Email: <a href="mailto:technovahelp@gmail.com">technovahelp@gmail.com</a></p>
+      <p>Phone: +1-819-NOVA • Fax: +1-555-FAX-2049</p>
+      <p style="font-size:0.9rem; color:#0a3b4f;">Address: 720 Silicon Valley, CA 032003.</p>
+      <p style="font-size:0.8rem; color:#99354f;">DISCLAMER! Contact info is not real. only for nostalic people to feel the realism.</p>
+    </section>
+
+  </div>
+
+  <audio id="retroAudio" loop preload="auto">
+    <!-- Placeholder, REMEMBER TO CHANGE YOUR AUDIO TO BE NAMED TO THE SCOURSE-->
+    <source src="retro_loop.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    //fake download
+    function fakeDL(name){
+      alert('Starting download: ' + name + '\n(For demo only — this is a fake download handler.)');
+    }
+
+    // music toggle
+    const audio = document.getElementById('retroAudio');
+    const musicToggle = document.getElementById('musicToggle');
+    const musicLabel = document.getElementById('musicLabel');
+    let playing = false;
+    musicToggle.addEventListener('click', ()=>{
+      if(!playing){
+        audio.play().catch(()=>{});
+        musicLabel.textContent = 'Pause Ambient';
+        playing = true;
+      } else {
+        audio.pause();
+        musicLabel.textContent = 'Play Ambient';
+        playing = false;
+      }
+    });
+
+    // visitor counter
+    function incrementCounter(){
+      // tiny vibration of the button to feel responsive
+      alert('Visitor counter bumped. Thank you!');
+    }
+
+    // small accessibility nicety: keyboard nav focus style
+    document.addEventListener('keyup', (e)=>{
+      if(e.key === 'Tab') document.body.style.outline = 'none';
+    });
+
+    // load
+    window.addEventListener('load', ()=>{
+      const nav = document.querySelector('nav a:first-child');
+      if(nav) nav.style.boxShadow = '0 6px 18px rgba(0,120,220,0.22)';
+      setTimeout(()=>{ if(nav) nav.style.boxShadow=''; }, 900);
+    });
+  </script>
 </body>
 </html>
+message.txt
+14 KB
